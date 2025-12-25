@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Microbio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #2c0b0e;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(120, 0, 0, 0.1) 0%, transparent 20%),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23800000' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: 'Playfair Display', serif;
+            color: #5c2b2b;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+        }
+        
+        /* Marco de madera */
+        .wood-frame {
+            background: 
+                linear-gradient(135deg, 
+                    #8B4513 0%, 
+                    #A0522D 25%, 
+                    #8B4513 50%, 
+                    #A0522D 75%, 
+                    #8B4513 100%);
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+            position: relative;
+            border: 8px solid #5D4037;
+        }
+        
+        .wood-frame::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid rgba(139, 69, 19, 0.3);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+        
+        /* Tarjeta interior - como un libro antiguo */
+        .card {
+            background: #FFF8F0;
+            background-image: 
+                linear-gradient(rgba(245, 235, 220, 0.8), rgba(245, 235, 220, 0.8)),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23a0522d' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
+            border-radius: 15px;
+            padding: 50px 40px;
+            box-shadow: 
+                inset 0 0 50px rgba(139, 69, 19, 0.1),
+                0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 1px solid #E8D4B9;
+        }
+        
+        /* Cabecera cálida */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 30px;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #A0522D, transparent);
+        }
+        
+        .title {
+            font-family: 'Dancing Script', cursive;
+            color: #8B0000;
+            font-size: 4.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(139, 0, 0, 0.2);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            color: #5D4037;
+            font-size: 1.8rem;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        .nickname {
+            font-family: 'Dancing Script', cursive;
+            color: #8B0000;
+            font-size: 3.5rem;
+            display: inline-block;
+            margin: 0 15px;
+            transform: rotate(-3deg);
+            text-shadow: 2px 2px 4px rgba(139, 0, 0, 0.2);
+            background: rgba(255, 248, 240, 0.9);
+            padding: 5px 25px;
+            border-radius: 10px;
+            border: 2px dashed #A0522D;
+        }
+        
+        /* Contenido principal - como una carta escrita a mano */
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .letter {
+            flex: 2;
+            min-width: 300px;
+            background: #FFFEFC;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.05),
+                inset 0 0 0 1px #F5EBD7;
+            position: relative;
+            border-left: 8px solid #8B0000;
+        }
+        
+        .letter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(to bottom, rgba(139, 0, 0, 0.1), transparent);
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #5D4037;
+            text-align: justify;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .message p {
+            margin-bottom: 25px;
+            text-indent: 30px;
+        }
+        
+        .highlight {
+            color: #8B0000;
+            font-weight: bold;
+            font-style: italic;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #8B0000;
+            opacity: 0.3;
+        }
+        
+        /* Área de gatitos - como fotos en un álbum */
+        .kittens {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        .photo-frame {
+            width: 100%;
+            height: 220px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.2),
+                inset 0 0 0 12px #FFF8F0,
+                inset 0 0 0 15px #A0522D,
+                inset 0 0 0 20px #FFF8F0;
+            border: 2px solid #5D4037;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.03);
+        }
+        
+        .photo-frame::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid rgba(160, 82, 45, 0.2);
+            border-radius: 5px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .photo-frame:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Decoraciones cálidas */
+        .warm-decoration {
+            position: absolute;
+            font-size: 2.5rem;
+            z-index: 10;
+            opacity: 0.8;
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+        
+        .warm-decoration:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        /* Velas cálidas */
+        .candle {
+            position: absolute;
+            width: 30px;
+            height: 60px;
+            background: linear-gradient(to bottom, #8B0000, #B22222, #8B0000);
+            border-radius: 5px;
+            z-index: 5;
+            box-shadow: 0 0 10px rgba(178, 34, 34, 0.5);
+        }
+        
+        .candle::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 25px;
+            background: linear-gradient(to bottom, #FFA500, #FF4500);
+            border-radius: 50% 50% 20% 20%;
+            animation: flicker 2s infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { 
+                opacity: 0.9;
+                box-shadow: 0 0 10px #FF4500, 0 0 20px #FF4500;
+            }
+            50% { 
+                opacity: 1;
+                box-shadow: 0 0 15px #FF4500, 0 0 30px #FF4500, 0 0 40px #FF4500;
+            }
+        }
+        
+        /* Firma */
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px dashed #A0522D;
+            position: relative;
+        }
+        
+        .signature-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #8B0000;
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+        .signature-heart {
+            font-size: 2.5rem;
+            color: #8B0000;
+            display: inline-block;
+            animation: gentleBeat 2s infinite;
+            vertical-align: middle;
+        }
+        
+        @keyframes gentleBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Botón íntimo */
+        .intimate-btn {
+            background: linear-gradient(to bottom, #8B0000, #660000);
+            color: #FFF8F0;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 40px auto 0;
+            display: block;
+            transition: all 0.4s ease;
+            font-family: 'Playfair Display', serif;
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .intimate-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s;
+        }
+        
+        .intimate-btn:hover::before {
+            left: 100%;
+        }
+        
+        .intimate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 20px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: linear-gradient(to bottom, #A52A2A, #8B0000);
+        }
+        
+        /* Mensaje final */
+        .closing {
+            text-align: center;
+            color: #FFF8F0;
+            margin-top: 40px;
+            font-size: 1.4rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            background: rgba(139, 0, 0, 0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(160, 82, 45, 0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .title {
+                font-size: 3.5rem;
+            }
+            
+            .nickname {
+                font-size: 2.8rem;
+            }
+            
+            .card {
+                padding: 30px 20px;
+            }
+            
+            .letter {
+                padding: 30px;
+            }
+        }
+        
+        /* Efecto de polvo de estrellas */
+        .stardust {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.8);
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Marco de madera -->
+        <div class="wood-frame">
+            <!-- Velas cálidas -->
+            <div class="candle" style="left: 30px; top: 50px;"></div>
+            <div class="candle" style="right: 30px; top: 50px;"></div>
+            
+            <!-- Polvo de estrellas -->
+            <div id="stardust-container"></div>
+            
+            <!-- Tarjeta interior -->
+            <div class="card">
+                <!-- Decoraciones cálidas -->
+                <div class="warm-decoration" style="top: 20px; left: 20px;">❄️</div>
+                <div class="warm-decoration" style="top: 20px; right: 20px;">🕯️</div>
+                <div class="warm-decoration" style="bottom: 20px; left: 20px;">🌟</div>
+                <div class="warm-decoration" style="bottom: 20px; right: 20px;">❤️</div>
+                
+                <!-- Cabecera -->
+                <div class="header">
+                    <h1 class="title">Mi Navidad Contigo</h1>
+                    <div class="subtitle">
+                        Para mi amada <span class="nickname">Microbio</span>
+                    </div>
+                </div>
+                
+                <!-- Contenido principal -->
+                <div class="content">
+                    <!-- Carta de amor -->
+                    <div class="letter">
+                        <div class="message">
+                            <p>Mi querida <span class="highlight">Microbio</span>,</p>
+                            
+                            <p>En estos días fríos de diciembre, cuando el mundo se viste de luces y canciones, yo solo pienso en el calor que siento cuando estoy junto a ti. No son los regalos, ni las decoraciones, ni la cena navideña lo que hace especial esta época... eres tú.</p>
+                            
+                            <p>Eres esa lucecita cálida que ilumina mis días más grises. Ese abrazo que reconforta más que cualquier manta. Esa sonrisa que derrite cualquier escarcha del alma.</p>
+                            
+                            <p>Este año, mi único deseo para Navidad es seguir construyendo recuerdos a tu lado. Despertarme contigo, compartir el chocolate caliente, reírnos de cosas tontas y acurrucarnos como esos gatitos que tanto te gustan.</p>
+                            
+                            <p>Que esta Navidad nos encuentre más unidos que nunca. Que cada campanada sea un recordatorio de lo afortunado que soy por tenerte. Que cada lucecita en el árbol refleje la chispa que pones en mis ojos.</p>
+                            
+                            <p>Te amo más de lo que las palabras pueden expresar. Eres mi hogar, mi paz, mi Navidad todos los días del año.</p>
+
+                            <p>Aun si no podemos vernos quiero que sepas, siempre estas en mis pensamientos. </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Gatitos navideños -->
+                    <div class="kittens">
+                        <div class="photo-frame">
+                            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGVvMDJpMDUzMHJ5d21ya2oycnRzZmlsMTF3cWRpOGI5ZTh4bjJ6eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Zl7u48zLVFgLpRwq6f/giphy.gif" alt="Gatitos abrazándose">
+                        </div>
+                        <div class="photo-frame">
+                            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTRyb214cmt4YmNtd2ozaTl2NW82cjNzaGVxMzZsdTBhMDN3ZjB5eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vFKqnCdLPNOKc/giphy.gif" alt="Gatito con gorro navideño">
+                        </div>
+                        <div class="photo-frame">
+                            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2Zyb3o2Ym1paTRrZXBlZ2tzbnc2ZGh3Znl2YzVzN3VueHc1NjF2bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/f9EmXxglhdhAj1bo28/giphy.gif" alt="Gatito jugando con decoraciones">
+                        </div>
+                        <div class="photo-frame">
+                            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWMwMzdhbnBqdnM3aTh5dnFpY3BwNDU0bjEyZXB4Ynd6c2h6dDVtbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QEN54dmAJuTF0wBWXz/giphy.gif" alt="Gatito jugando con decoraciones">
+                        </div>
+                        <div class="photo-frame">
+                            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXptdHp1cjVweGtqOHdwNDFpYjliMDZpNzU1OGhndTczMDBjYmJoaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U1wMHRq7bnuInYaVlB/giphy.gif" alt="Gatito jugando con decoraciones">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Firma -->
+                <div class="signature">
+                    <span class="signature-text">Con todo mi amor,</span>
+                    <span class="signature-heart">❤️</span>
+                    <div style="font-style: italic; color: #5D4037; margin-top: 10px;">Tu novio que te adora</div>
+                </div>
+                
+                <!-- Botón íntimo -->
+                <button class="intimate-btn" id="memoryBtn">
+                    Un recuerdo para ti
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mensaje final -->
+        <div class="closing">
+            Que la calidez de nuestro amor ilumine cada rincón de tu corazón esta Navidad
+            <div style="margin-top: 15px; font-size: 2rem;">🎄 ❤️ 🐱</div>
+        </div>
+    </div>
+
+    <script>
+        // Crear polvo de estrellas
+        function createStardust() {
+            const container = document.getElementById('stardust-container');
+            const stardustCount = 40;
+            
+            for (let i = 0; i < stardustCount; i++) {
+                const stardust = document.createElement('div');
+                stardust.classList.add('stardust');
+                
+                // Posición aleatoria
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const size = Math.random() * 3 + 1;
+                const duration = Math.random() * 4 + 2;
+                const delay = Math.random() * 5;
+                
+                stardust.style.left = `${posX}%`;
+                stardust.style.top = `${posY}%`;
+                stardust.style.width = `${size}px`;
+                stardust.style.height = `${size}px`;
+                stardust.style.animationDuration = `${duration}s`;
+                stardust.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(stardust);
+            }
+        }
+        
+        // Crear decoraciones adicionales
+        function createAdditionalDecorations() {
+            const decorations = ['🍂', '💋', '☕', '💋', '🧣', '💋', '🔥', '✨','💋','💋'];
+            const card = document.querySelector('.card');
+            
+            for (let i = 0; i < 6; i++) {
+                const decor = document.createElement('div');
+                decor.classList.add('warm-decoration');
+                decor.innerHTML = decorations[i];
+                
+                // Posición aleatoria pero no cerca de los bordes
+                const posX = Math.random() * 70 + 15;
+                const posY = Math.random() * 70 + 15;
+                
+                decor.style.left = `${posX}%`;
+                decor.style.top = `${posY}%`;
+                decor.style.fontSize = `${Math.random() * 20 + 15}px`;
+                decor.style.opacity = Math.random() * 0.5 + 0.3;
+                decor.style.animation = `gentleBeat ${Math.random() * 3 + 2}s infinite alternate`;
+                
+                card.appendChild(decor);
+            }
+        }
+        
+        // Función para el botón de recuerdos
+        document.getElementById('memoryBtn').addEventListener('click', function() {
+            const memories = [
+                "Recuerdo cuando nos conocimos y sentí que el mundo tenía más color...",
+                "Me encanta cuando te ríes de esa manera especial que solo tú tienes...",
+                "Esa mirada que me das cuando sabes exactamente lo que estoy pensando...",
+                "Las mañanas contigo, aunque sea por llamada, son mis favoritas...",
+                "El sonido de tu voz cuando me dices 'te amo'...",
+                "Cómo tu mano cabe perfectamente en la mía, como si fueran hechas la una para la otra..."
+            ];
+            
+            // Seleccionar un recuerdo aleatorio
+            const randomMemory = memories[Math.floor(Math.random() * memories.length)];
+            
+            // Crear un elemento para mostrar el recuerdo
+            const memoryElement = document.createElement('div');
+            memoryElement.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #FFFEFC;
+                color: #5D4037;
+                padding: 40px 50px;
+                border-radius: 15px;
+                font-size: 1.4rem;
+                text-align: center;
+                z-index: 1000;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                            0 0 0 15px #8B0000,
+                            0 0 0 20px #FFF8F0;
+                animation: memoryAppear 0.8s;
+                max-width: 80%;
+                line-height: 1.6;
+                font-family: 'Playfair Display', serif;
+                border: 2px solid #A0522D;
+            `;
+            
+            // Crear estilo para la animación
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes memoryAppear {
+                    0% { 
+                        transform: translate(-50%, -50%) scale(0.5);
+                        opacity: 0;
+                    }
+                    70% { 
+                        transform: translate(-50%, -50%) scale(1.05);
+                    }
+                    100% { 
+                        transform: translate(-50%, -50%) scale(1);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            memoryElement.innerHTML = `
+                <div style="margin-bottom: 20px; color: #8B0000; font-size: 3rem;">
+                    ❤️
+                </div>
+                <div style="font-style: italic; margin-bottom: 10px;">
+                    "Un recuerdo nuestro..."
+                </div>
+                <div style="margin-bottom: 25px; padding: 15px; background: #FFF8F0; border-radius: 10px; border-left: 5px solid #8B0000;">
+                    ${randomMemory}
+                </div>
+                <div style="color: #A0522D; font-size: 1.2rem;">
+                    Te amo, Microbio
+                </div>
+            `;
+            
+            // Añadir el mensaje al body
+            document.body.appendChild(memoryElement);
+            
+            // Crear efecto de confeti suave
+            createSoftConfetti();
+            
+            // Remover el mensaje después de 6 segundos
+            setTimeout(() => {
+                memoryElement.style.transition = 'all 0.8s';
+                memoryElement.style.opacity = '0';
+                memoryElement.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                setTimeout(() => {
+                    document.body.removeChild(memoryElement);
+                }, 800);
+            }, 6000);
+        });
+        
+        // Crear efecto de confeti suave
+        function createSoftConfetti() {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.position = 'fixed';
+            confettiContainer.style.top = '0';
+            confettiContainer.style.left = '0';
+            confettiContainer.style.width = '100%';
+            confettiContainer.style.height = '100%';
+            confettiContainer.style.pointerEvents = 'none';
+            confettiContainer.style.zIndex = '999';
+            
+            document.body.appendChild(confettiContainer);
+            
+            const confettiCount = 80;
+            const colors = ['#8B0000', '#A0522D', '#FFF8F0'];
+            const symbols = ['❄', '✨', '❤️', '🐱', '🌟'];
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                confetti.style.position = 'absolute';
+                confetti.style.fontSize = `${Math.random() * 20 + 10}px`;
+                confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '-30px';
+                confetti.style.opacity = '0.8';
+                confetti.style.textShadow = '0 1px 3px rgba(0,0,0,0.2)';
+                confetti.style.zIndex = '999';
+                
+                confettiContainer.appendChild(confetti);
+                
+                // Animación de caída suave
+                const animationDuration = Math.random() * 4 + 3;
+                const horizontalMovement = Math.random() * 100 - 50;
+                
+                confetti.animate([
+                    { transform: 'translate(0, 0) rotate(0deg)', opacity: 0.8 },
+                    { transform: `translate(${horizontalMovement}px, 100vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: animationDuration * 1000,
+                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                });
+                
+                // Remover después de la animación
+                setTimeout(() => {
+                    confetti.remove();
+                }, animationDuration * 1000);
+            }
+            
+            // Remover el contenedor después de que termine la animación
+            setTimeout(() => {
+                document.body.removeChild(confettiContainer);
+            }, 5000);
+        }
+        
+        // Efecto de entrada cálida
+        function warmEntrance() {
+            const card = document.querySelector('.card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 1.2s ease-out';
+            
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // Encender velas
+            setTimeout(() => {
+                const candles = document.querySelectorAll('.candle');
+                candles.forEach(candle => {
+                    candle.style.animation = 'flicker 2s infinite alternate';
+                });
+            }, 1500);
+        }
+        
+        // Inicializar efectos cuando la página cargue
+        document.addEventListener('DOMContentLoaded', function() {
+            createStardust();
+            createAdditionalDecorations();
+            warmEntrance();
+            
+            // Efecto de escritura en la carta
+            const messageParagraphs = document.querySelectorAll('.message p');
+            messageParagraphs.forEach((p, index) => {
+                p.style.opacity = '0';
+                p.style.transform = 'translateX(-20px)';
+                p.style.transition = `all 0.8s ease-out ${index * 0.3 + 1}s`;
+                
+                setTimeout(() => {
+                    p.style.opacity = '1';
+                    p.style.transform = 'translateX(0)';
+                }, 500 + (index * 300));
+            });
+            
+            // Efecto en las fotos
+            const photos = document.querySelectorAll('.photo-frame');
+            photos.forEach((photo, index) => {
+                photo.style.opacity = '0';
+                photo.style.transform = 'scale(0.8)';
+                photo.style.transition = `all 0.8s ease-out ${index * 0.2 + 2}s`;
+                
+                setTimeout(() => {
+                    photo.style.opacity = '1';
+                    photo.style.transform = 'scale(1)';
+                }, 2000 + (index * 200));
+            });
+        });
+    </script>
+</body>
+</html>
